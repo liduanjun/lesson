@@ -15,7 +15,18 @@
 * GPIO 按键中断相关实验
 
 * A/D 转换
+... 
+未完待续
 
 ## 教学内容
 
+* [流水灯](LED.md)
+* [按键中断](KeyInterrupt.md)
+
 ## 作业安排
+
+学生完成实验
+* 1.LED_GPIO
+* 2.Ket_Int
+* 6.ADC
+* 7.ADC_INT
