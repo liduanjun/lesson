@@ -44,20 +44,20 @@ typedef struct {
 ## 按键中断的核心代码-GIC设置
 ```
 /*
-	 * GIC interrupt controller:
-	 * */
+* GIC interrupt controller:
+*/
 
-	// Enables the corresponding interrupt SPI25, SPI26 -- Key_2, Key_3
-	ICDISER.ICDISER1 |= (0x1 << 25) | (0x1 << 26);
+// Enables the corresponding interrupt SPI25, SPI26 -- Key_2, Key_3
+ICDISER.ICDISER1 |= (0x1 << 25) | (0x1 << 26);
 
-	CPU0.ICCICR |= 0x1; //Global enable for signaling of interrupts
+CPU0.ICCICR |= 0x1; //Global enable for signaling of interrupts
 
-	CPU0.ICCPMR = 0xFF; //The priority mask level.Priority filter. threshold
+CPU0.ICCPMR = 0xFF; //The priority mask level.Priority filter. threshold
 
-	ICDDCR = 1; 	//Bit1:  GIC monitors the peripheral interrupt signals and
-					//		forwards pending interrupts to the CPU interfaces2
+ICDDCR = 1; 	//Bit1:  GIC monitors the peripheral interrupt signals and
+				//		forwards pending interrupts to the CPU interfaces2
 
-	ICDIPTR.ICDIPTR14 = 0x01010101;	//SPI25  SPI26  interrupts are sent to processor 0
+ICDIPTR.ICDIPTR14 = 0x01010101;	//SPI25  SPI26  interrupts are sent to processor 0
 ```
 
 * ICDISER.ICDISER1
