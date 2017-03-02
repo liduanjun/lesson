@@ -4,9 +4,24 @@
 
 ![schematic-uart](resource/images/schematic-uart.png)
 
+## UART 时序
+
+![a Frame of UART](resource/images/UARTFrame.png)
+
 ## UART Block
 
 ![UARTBlock](resource/images/UARTBlock.png)
+
+## Rx Operation with FIFO
+1. Select the transmit mode (either interrupt or DMA mode).
+2. Verify the value of Rx FIFO count in the UFSTATn register. When the value is less than 16, set the value of
+UMCONn[0] to "1" (activate nRTS). However, when the value equal to or larger than 16, set the value to "0"
+(inactivate nRTS).
+3. Repeat the Step 2 to receive next data.
+## Tx Operation with FIFO
+1. Select the transmit mode (either interrupt or DMA mode).
+2. Verify the value of UMSTATn[0]. When the value is "1" (activate nCTS), Write data to Tx FIFO register.
+3. Repeat the Step 2 to send next data.
 
 ## UART 寄存器
 
@@ -55,6 +70,18 @@ void uart_init(void)
 	 * */
 	UART2.UBRDIV2 = 0x35;
 	UART2.UFRACVAL2 = 0x5;
+}
+
+int main(void) 
+{
+	char c, str[] = "uart test!! \n";
+	uart_init();
+
+	while(1)
+	{
+		puts(str);
+	}
+	return 0;
 }
 ```
 * GPA1CON

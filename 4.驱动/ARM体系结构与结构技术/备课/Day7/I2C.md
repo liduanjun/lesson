@@ -3,14 +3,36 @@
 ## 支持 I2C 总线的传感器之一 : 三轴加速度传感器
 
 ![schematic-i2c](resource/images/schematic-i2c.png)
+[三轴传感器MPU6050芯片手册](resource/MPU6050.pdf)
 
 ## I2C Block
 
 ![I2CBlock](resource/images/I2CBlock.png)
 
-## I2C Flowcharts
+## I2C 协议
 
-![I2CFlowcharts](resource/images/I2CFlowcharts.png)
+I2C 协议参考资料 : 
+[飞利浦半导体I2C协议说明手册](resource/I2C_SPEC.pdf)
+
+### I2C 启动停止条件
+
+![I2CStartStopCondition](resource/images/I2CStartStopCondition.png)
+
+### I2C 数据格式
+
+![I2CDataTransferFormat](resource/images/I2CDataTransferFormat.png)
+
+### I2C 数据传送时序图
+
+![I2CDataOnI2CBus](resource/images/I2CDataOnI2CBus.png)
+
+## I2C Master Transmitter Mode Flow Chart
+
+![I2CMasterTransmitter](resource/images/I2CMasterTransmitter.png)
+
+## I2C Master Receiver Mode Flow Chart
+
+![I2CMasterReceiver](resource/images/I2CMasterReceiver.png)
 
 ## I2C 寄存器
 
@@ -27,6 +49,27 @@ typedef struct {
 }i2c5;
 #define  I2C5 (* (volatile i2c5 *)0x138B0000 )
 ```
+
+* I2CCON
+	* Base Address: 0x138C_0000
+	* Address = Base Address + 0x0000, Reset Value = 0x0000_0000
+	* ![I2CCON](resource/images/I2CCON.png)
+* I2CSTAT
+	* Base Address: 0x138C_0000
+	* Address = Base Address + 0x0004, Reset Value = 0x0000_0000
+	* ![I2CSTAT](resource/images/I2CSTAT.png)
+* I2CADD
+	* Base Address: 0x138C_0000
+	* Address = Base Address + 0x0008, Reset Value = 0x0000_0000
+	* ![I2CADD](resource/images/I2CADD.png)
+* I2CDS
+	* Base Address: 0x138C_0000
+	* Address = Base Address + 0x000C, Reset Value = 0x0000_0000
+	* ![I2CDS](resource/images/I2CDS.png)
+* I2CLC
+	* Base Address: 0x138C_0000
+	* Address = Base Address + 0x0010, Reset Value = 0x0000_0000
+	* ![I2CLC](resource/images/I2CLC.png)
 
 ## I2C 代码
 
@@ -179,11 +222,3 @@ int main(void)
 	* Base Address: 0x1140_0000
 	* Address = Base Address + 0x0040, Reset Value = 0x0000_0000
 	* ![GPBCON](resource/images/GPBCON.png)
-* I2CSTAT
-	* Base Address: 0x138C_0000
-	* Address = Base Address + 0x0004, Reset Value = 0x0000_0000
-	* ![I2CSTAT](resource/images/I2CSTAT.png)
-* I2CCON
-	* Base Address: 0x138C_0000
-	* Address = Base Address + 0x0000, Reset Value = 0x0000_0000
-	* ![I2CCON](resource/images/I2CCON.png)

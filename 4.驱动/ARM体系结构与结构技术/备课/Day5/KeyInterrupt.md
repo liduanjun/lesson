@@ -28,6 +28,10 @@ typedef struct {
 	* Base Address: 0x1100_0000
 	* Address = Base Address + 0x0C20, Reset Value = 0x0000_0000
 	* ![GPX1CON1](resource/images/GPX1CON1.png)
+* GPX1DAT
+	* Base Address: 0x1100_0000
+	* Address = Base Address + 0x0C24, Reset Value = 0x0000_0000
+	* ![GPX1DAT](resource/images/GPX1DAT.png)
 * GPX1PUD
 	* Base Address: 0x1100_0000
 	* Address = Base Address + 0x0C28, Reset Value = 0x5555
@@ -80,3 +84,59 @@ ICDIPTR.ICDIPTR14 = 0x01010101;	//SPI25  SPI26  interrupts are sent to processor
 	* Base Address: 0x1049_0000
 	* Address = Base Address + 0x0838, Reset Value = 0x0000_0000 (ICDIPTR14_CPU0)
 	* ![ICDIPTR14](resource/images/ICDIPTR14.png)
+
+## 按键中断处理程序
+
+```
+void do_irq(void )
+{
+	int irq_num;
+	irq_num = (CPU0.ICCIAR & 0x1FF);
+	switch (irq_num) {
+
+	case 58: //turn on LED2; turn off LED3
+		GPX2.GPX2DAT = 0x1 << 7;
+		GPX1.GPX1DAT &= ~0x1;
+		printf("IRQ interrupt !! turn on LED2; turn off LED3\n");
+
+		//Clear Pend
+		EXT_INT41_PEND |= 0x1 << 2;
+		ICDICPR.ICDICPR1 |= 0x1 << 26;
+		break;
+	case 57: //Turn on Led3; Turn off Led2
+
+		GPX2.GPX2DAT &= ~(0x1 << 7);
+		GPX1.GPX1DAT |= 0x1;
+		printf("IRQ interrupt !! Turn on LED3; Turn off LED2\n");
+
+		//Clear Pend
+  		EXT_INT41_PEND |= 0x1 << 1;
+		ICDICPR.ICDICPR1 |= 0x1 << 26;
+		break;
+	}
+
+	// End of interrupt
+	CPU0.ICCEOIR = (CPU0.ICCEOIR & ~(0x1FF)) | irq_num;
+
+}
+```
+* ICCIAR
+	* Base Address: 0x1048_0000
+	* Address = Base Address + 0x000C, Reset Value = 0x0000_0000
+	* ![ICCIAR](resource/images/ICCIAR.png)
+* GPX1DAT
+	* Base Address: 0x1100_0000
+	* Address = Base Address + 0x0C24, Reset Value = 0x0000_0000
+	* ![GPX1DAT](resource/images/GPX1DAT.png)
+* EXT_INT41_PEND
+	* Base Address: 0x1100_0000
+	* Address = Base Address + 0x0F44, Reset Value = 0x0000_0000
+	* ![EXT_INT41_PEND](resource/images/EXT_INT41_PEND.png)
+* ICDICPR1
+	* Base Address: 0x1049_0000
+	* Address = Base Address + 0x0284, Reset Value = 0x0000_0000
+	* ![ICDICPR1](resource/images/ICDICPR1.png)
+* ICCEOIR_CPU0
+	* Base Address: 0x1048_0000
+	* Address = Base Address + 0x0010, Reset Value = 0x0000_0000
+	* ![ICCEOIR](resource/images/ICCEOIR.png)

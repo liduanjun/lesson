@@ -47,24 +47,24 @@ int main(void)
 	GPX2.CON = 0x1 << 28;
 	uart_init();
 
-	unsigned char ID[4],buff[8];            					//×´Ì¬×Ö
+	unsigned char ID[4],buff[8];            					//çŠ¶æ€å­—
 	unsigned char key;
 	unsigned char ret;//,j,k,ret0,ret1,ret2,ret3,ret4,ret5,ret6,ret7,ret8,ret9;
 	unsigned int rx_counter;
 	volatile int i=0;
 
-	GPC1.CON = (GPC1.CON & ~0xffff0) | 0x55550;//ÉèÖÃIOÒý½ÅÎªSPIÄ£Ê½
+	GPC1.CON = (GPC1.CON & ~0xffff0) | 0x55550;//è®¾ç½®IOå¼•è„šä¸ºSPIæ¨¡å¼
 
 /*spi clock config*/
 	CLK_SRC_PERIL1 = (CLK_SRC_PERIL1 & ~(0xF<<24)) | 6<<24;// 0x6: 0110 = SCLKMPLL_USER_T 800Mhz
 	CLK_DIV_PERIL2 = 19 <<8 | 3;//SPI_CLK = 800/(19+1)/(3+1)
 
-	soft_reset();	                   // Èí¸´Î»SPI¿ØÖÆÆ÷
+	soft_reset();	                   // è½¯å¤ä½SPIæŽ§åˆ¶å™¨
 	SPI2.CH_CFG &= ~( (0x1 << 4) | (0x1 << 3) | (0x1 << 2) | 0x3);//master mode, CPOL = 0, CPHA = 0 (Format A)
 	SPI2.MODE_CFG &= ~((0x3 << 17) | (0x3 << 29));   //BUS_WIDTH=8bit,CH_WIDTH=8bit
-	SPI2.CS_REG &= ~(0x1 << 1);        //Ñ¡ÔñÊÖ¶¯Ñ¡ÔñÐ¾Æ¬
-	mydelay_ms(10);    //ÑÓÊ±
-    Init_can();   //³õÊ¼»¯MCP2515
+	SPI2.CS_REG &= ~(0x1 << 1);        //é€‰æ‹©æ‰‹åŠ¨é€‰æ‹©èŠ¯ç‰‡
+	mydelay_ms(10);    //å»¶æ—¶
+    Init_can();   //åˆå§‹åŒ–MCP2515
 
     printf("\n************ SPI CAN test!! ************\n");
 
@@ -83,17 +83,17 @@ int main(void)
     	}
     	printf("\n");
 
-    	Can_send(src); //·¢ËÍ±ê×¼Ö¡
+    	Can_send(src); //å‘é€æ ‡å‡†å¸§
         mydelay_ms(100);
-        ret = Can_receive(dst); //½ÓÊÕCAN×ÜÏßÊý¾Ý
+        ret = Can_receive(dst); //æŽ¥æ”¶CANæ€»çº¿æ•°æ®
         printf("ret=%x\n",ret);
         printf("src=");
-        for(i=0;i<8;i++) printf(" %x", src[i]);//½«CAN×ÜÏßÉÏÊÕµ½µÄÊý¾Ý·¢µ½´®ÐÐ¿Ú
+        for(i=0;i<8;i++) printf(" %x", src[i]);//å°†CANæ€»çº¿ä¸Šæ”¶åˆ°çš„æ•°æ®å‘åˆ°ä¸²è¡Œå£
 
         printf("\n");
 
         printf("dst=");
-        for(i=0;i<8;i++) printf(" %x",dst[6+i]); //½«CAN×ÜÏßÉÏÊÕµ½µÄÊý¾Ý·¢µ½´®ÐÐ¿Ú
+        for(i=0;i<8;i++) printf(" %x",dst[6+i]); //å°†CANæ€»çº¿ä¸Šæ”¶åˆ°çš„æ•°æ®å‘åˆ°ä¸²è¡Œå£
 		printf("\n");
 
 		//Turn off

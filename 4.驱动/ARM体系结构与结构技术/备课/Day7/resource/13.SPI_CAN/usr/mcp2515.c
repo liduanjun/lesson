@@ -10,7 +10,7 @@ void delay(int times)
 	}
 }
 /*
- * Æ¬Ñ¡´Ó»ú
+ * ç‰‡é€‰ä»æœº
  */
 void slave_enable(void)
 {
@@ -19,7 +19,7 @@ void slave_enable(void)
 	delay(3);
 }
 /*
- * È¡ÏûÆ¬Ñ¡´Ó»ú
+ * å–æ¶ˆç‰‡é€‰ä»æœº
  */
 void slave_disable(void)
 {
@@ -28,7 +28,7 @@ void slave_disable(void)
 	delay(1);
 }
 /*
- * ¹¦ÄÜ£ºÏòSPI×ÜÏß·¢ËÍÒ»¸ö×Ö½Ú
+ * åŠŸèƒ½ï¼šå‘SPIæ€»çº¿å‘é€ä¸€ä¸ªå­—èŠ‚
  */
 void send_byte(unsigned char data)
 {
@@ -39,7 +39,7 @@ void send_byte(unsigned char data)
 	SPI2.CH_CFG &= ~0x1; // disable Tx Channel
 }
 /*
- * ¹¦ÄÜ£º´ÓSPI×ÜÏß¶ÁÈ¡Ò»¸ö×Ö½Ú
+ * åŠŸèƒ½ï¼šä»SPIæ€»çº¿è¯»å–ä¸€ä¸ªå­—èŠ‚
  */
 unsigned char recv_byte()
 {
@@ -52,36 +52,36 @@ unsigned char recv_byte()
 	return  data;
 }
 /*
- * ¸´Î»spi¿ØÖÆÆ÷
+ * å¤ä½spiæ§åˆ¶å™¨
  */
 void soft_reset(void)
 {
 	SPI2.CH_CFG |= 0x1 << 5;
-	delay(1);                     //ÑÓÊ±
+	delay(1);                     //å»¶æ—¶
 	SPI2.CH_CFG &= ~(0x1 << 5);
 }
 
-//¹¦ÄÜ£º¸´Î»Ö¸Áî¿ÉÒÔÖØĞÂ³õÊ¼»¯MCP2515 µÄÄÚ²¿¼Ä´æÆ÷£¬²¢ÉèÖÃÅäÖÃÄ£Ê½
+//åŠŸèƒ½ï¼šå¤ä½æŒ‡ä»¤å¯ä»¥é‡æ–°åˆå§‹åŒ–MCP2515 çš„å†…éƒ¨å¯„å­˜å™¨ï¼Œå¹¶è®¾ç½®é…ç½®æ¨¡å¼
 void reset_2515()
 {
-	soft_reset();      //¸´Î»spi¿ØÖÆÆ÷
-    slave_enable() ;   //Æ¬Ñ¡´Ó»ú
-	send_byte(0xc0);   //·¢ËÍ¸´Î»ÃüÁî
-	slave_disable() ;  //È¡ÏûÆ¬Ñ¡
+	soft_reset();      //å¤ä½spiæ§åˆ¶å™¨
+    slave_enable() ;   //ç‰‡é€‰ä»æœº
+	send_byte(0xc0);   //å‘é€å¤ä½å‘½ä»¤
+	slave_disable() ;  //å–æ¶ˆç‰‡é€‰
 
 }
-//¹¦ÄÜ£ºÇëÇó·¢ËÍÃüÁî
+//åŠŸèƒ½ï¼šè¯·æ±‚å‘é€å‘½ä»¤
 void send_req_2515()
 {
- //   CS_SPI = 0; //¸´Î»
-	soft_reset();      //¸´Î»spi¿ØÖÆÆ÷
-    slave_enable() ;   //Æ¬Ñ¡´Ó»ú
-	send_byte(0x81);   //·¢ËÍÇëÇóÃüÁî
-	slave_disable() ;  //È¡ÏûÆ¬Ñ¡
+ //   CS_SPI = 0; //å¤ä½
+	soft_reset();      //å¤ä½spiæ§åˆ¶å™¨
+    slave_enable() ;   //ç‰‡é€‰ä»æœº
+	send_byte(0x81);   //å‘é€è¯·æ±‚å‘½ä»¤
+	slave_disable() ;  //å–æ¶ˆç‰‡é€‰
 //	CS_SPI=1;
 }
-//¹¦ÄÜ£ºÖ»ĞŞ¸Ä¼Ä´æÆ÷ÖĞµÄÄ³Ğ©Î»
-//Èë¿Ú²ÎÊı£ºAddr:¼Ä·áÆ÷µØÖ·  MASK£ºÆÁ±Î×Ö  Îª1Ê±¿ÉÒÔ¶Ôµ±Ç°Î»ĞŞ¸Ä  dat:Êı¾İ×Ö½Ú
+//åŠŸèƒ½ï¼šåªä¿®æ”¹å¯„å­˜å™¨ä¸­çš„æŸäº›ä½
+//å…¥å£å‚æ•°ï¼šAddr:å¯„ä¸°å™¨åœ°å€  MASKï¼šå±è”½å­—  ä¸º1æ—¶å¯ä»¥å¯¹å½“å‰ä½ä¿®æ”¹  dat:æ•°æ®å­—èŠ‚
 void bit_modify_2515(unsigned char addr, unsigned char mask, unsigned char data)
 {
 //    CS_SPI = 0 ;
@@ -95,9 +95,9 @@ void bit_modify_2515(unsigned char addr, unsigned char mask, unsigned char data)
 }
 
 /*
- * ¹¦ÄÜ£º´ÓÖ¸¶¨µØÖ·ÆğÊ¼µÄ¼Ä´æÆ÷¶ÁÈ¡Êı¾İ¡£
- *unsigned char Addr Òª¶ÁÈ¡µØÖ·¼Ä´æÆ÷µÄµØÖ·
- *·µ»ØÖµ£º´ÓµØÖ·µ±ÖĞ¶ÁÈ¡µÄÊıÖµ
+ * åŠŸèƒ½ï¼šä»æŒ‡å®šåœ°å€èµ·å§‹çš„å¯„å­˜å™¨è¯»å–æ•°æ®ã€‚
+ *unsigned char Addr è¦è¯»å–åœ°å€å¯„å­˜å™¨çš„åœ°å€
+ *è¿”å›å€¼ï¼šä»åœ°å€å½“ä¸­è¯»å–çš„æ•°å€¼
  */
 unsigned char read_byte_2515(unsigned char Addr)
 {
@@ -113,9 +113,9 @@ unsigned char read_byte_2515(unsigned char Addr)
 }
 
 /*
- * ¹¦ÄÜ£º½«Êı¾İĞ´ÈëÖ¸¶¨µØÖ·ÆğÊ¼µÄ¼Ä´æÆ÷¡£
- * unsigned char addr ¼Ä´æÆ÷µÄµØÖ·
- * unsigned char data Ïò¼Ä´æÆ÷Ğ´ÈëµÄÊı¾İ
+ * åŠŸèƒ½ï¼šå°†æ•°æ®å†™å…¥æŒ‡å®šåœ°å€èµ·å§‹çš„å¯„å­˜å™¨ã€‚
+ * unsigned char addr å¯„å­˜å™¨çš„åœ°å€
+ * unsigned char data å‘å¯„å­˜å™¨å†™å…¥çš„æ•°æ®
  */
 void write_byte_2515(unsigned char addr,unsigned char data)
 {
@@ -129,35 +129,35 @@ void write_byte_2515(unsigned char addr,unsigned char data)
 void  Init_can(void)
 {
 //unsigned char ret;
-    reset_2515(); //¸´Î»
-    write_byte_2515(0x0f, 0x80);     //CANCTRL¼Ä´æÆ÷£­£­½øÈëÅäÖÃÄ£Ê½ ÖĞÎÄDATASHEET 58Ò³
+    reset_2515(); //å¤ä½
+    write_byte_2515(0x0f, 0x80);     //CANCTRLå¯„å­˜å™¨ï¼ï¼è¿›å…¥é…ç½®æ¨¡å¼ ä¸­æ–‡DATASHEET 58é¡µ
 
-	//¿ÉÒÔÉèÖÃµÄ²¨ÌØÂÊ 5K 10K 15K 20K 25K 40K 50K 80K 100K 125K 200K 400K 500K 667K 800K 1M
-    write_byte_2515(0x2A, CNF1_20K); //CNF1Î»¶¨Ê±ÅäÖÃ¼ÄÆ÷   ÖĞÎÄDATASHEET 41-42Ò³
-    write_byte_2515(0x29, CNF2_20K); //CNF2Î»¶¨Ê±ÅäÖÃ¼ÄÆ÷   ÖĞÎÄDATASHEET 41-42Ò³
-    write_byte_2515(0x28, CNF3_20K); //CNF3Î»¶¨Ê±ÅäÖÃ¼ÄÆ÷   ÖĞÎÄDATASHEET 41-43Ò³
-    write_byte_2515(0x2B, 0x1f);     //CANINTEÖĞ¶ÏÊ¹ÄÜ¼Ä´æÆ÷  ÖĞÎÄDATASHEET 50 Ò³
-    write_byte_2515(0x60, 0x60);     //RXB0CTRL½ÓÊÕ»º³åÆ÷0 ¿ØÖÆ¼Ä´æÆ÷ ÖĞÎÄDATASHEET 27 Ò³
-    //write_byte_2515(0x70, 0x20);   //½ÓÊÕ»º³åÆ÷1¿ØÖÆ¼Ä´æÆ÷
-    bit_modify_2515(0x0C, 0x0f, 0x0f); //BFPCTRL_RXnBF Òı½Å¿ØÖÆ¼Ä´æÆ÷ºÍ×´Ì¬¼Ä´æÆ÷ ÖĞÎÄDATASHEET 29 Ò³
+	//å¯ä»¥è®¾ç½®çš„æ³¢ç‰¹ç‡ 5K 10K 15K 20K 25K 40K 50K 80K 100K 125K 200K 400K 500K 667K 800K 1M
+    write_byte_2515(0x2A, CNF1_20K); //CNF1ä½å®šæ—¶é…ç½®å¯„å™¨   ä¸­æ–‡DATASHEET 41-42é¡µ
+    write_byte_2515(0x29, CNF2_20K); //CNF2ä½å®šæ—¶é…ç½®å¯„å™¨   ä¸­æ–‡DATASHEET 41-42é¡µ
+    write_byte_2515(0x28, CNF3_20K); //CNF3ä½å®šæ—¶é…ç½®å¯„å™¨   ä¸­æ–‡DATASHEET 41-43é¡µ
+    write_byte_2515(0x2B, 0x1f);     //CANINTEä¸­æ–­ä½¿èƒ½å¯„å­˜å™¨  ä¸­æ–‡DATASHEET 50 é¡µ
+    write_byte_2515(0x60, 0x60);     //RXB0CTRLæ¥æ”¶ç¼“å†²å™¨0 æ§åˆ¶å¯„å­˜å™¨ ä¸­æ–‡DATASHEET 27 é¡µ
+    //write_byte_2515(0x70, 0x20);   //æ¥æ”¶ç¼“å†²å™¨1æ§åˆ¶å¯„å­˜å™¨
+    bit_modify_2515(0x0C, 0x0f, 0x0f); //BFPCTRL_RXnBF å¼•è„šæ§åˆ¶å¯„å­˜å™¨å’ŒçŠ¶æ€å¯„å­˜å™¨ ä¸­æ–‡DATASHEET 29 é¡µ
 
-    write_byte_2515(0x0f, 0x40);   //CAN¿ØÖÆ¼Ä´æÆ÷£­£­»Ø»·Ä£Ê½,ÓÃÓÚ²âÊÔ
+    write_byte_2515(0x0f, 0x40);   //CANæ§åˆ¶å¯„å­˜å™¨ï¼ï¼å›ç¯æ¨¡å¼,ç”¨äºæµ‹è¯•
 }
 
 /*
  * tx_buff[]
- * Fream Êı¾İÖ¡µÄÀàĞÍ
+ * Fream æ•°æ®å¸§çš„ç±»å‹
  */
 void Can_send(unsigned char *tx_buff)
 {
 	unsigned char i;
-	write_byte_2515(0x30, 0x03); //ÉèÖÃÎª·¢ËÍ×î¸ßÓÅÏÈ¼¶
-	write_byte_2515(0x31, 0xff); //·¢ËÍ»º³åÆ÷0±ê×¼±êÊ¶·û¸ßÎ»
-	write_byte_2515(0x32, 0x00); //·¢ËÍ»º³åÆ÷0±ê×¼±êÊ¶·ûµÍÎ»
-	write_byte_2515(0x35, 0x08);  //·¢ËÍ»º³åÆ÷0Êı¾İ³¤¶ÈÂë8×Ö½Ú
+	write_byte_2515(0x30, 0x03); //è®¾ç½®ä¸ºå‘é€æœ€é«˜ä¼˜å…ˆçº§
+	write_byte_2515(0x31, 0xff); //å‘é€ç¼“å†²å™¨0æ ‡å‡†æ ‡è¯†ç¬¦é«˜ä½
+	write_byte_2515(0x32, 0x00); //å‘é€ç¼“å†²å™¨0æ ‡å‡†æ ‡è¯†ç¬¦ä½ä½
+	write_byte_2515(0x35, 0x08);  //å‘é€ç¼“å†²å™¨0æ•°æ®é•¿åº¦ç 8å­—èŠ‚
 	for(i = 0; i < 8; i++)
 	{
-		write_byte_2515(0x36+i ,tx_buff[i]); //Ïòtxb»º³åÆ÷ÖĞĞ´Èë8¸ö×Ö½Ú
+		write_byte_2515(0x36+i ,tx_buff[i]); //å‘txbç¼“å†²å™¨ä¸­å†™å…¥8ä¸ªå­—èŠ‚
 //		printf("%x ",tx_buff[i]);
 	}
 	send_req_2515();
@@ -167,11 +167,11 @@ void Can_send(unsigned char *tx_buff)
 unsigned char Can_receive(unsigned char *rx_buff)
 {
 	unsigned char i,flag;
-    flag = read_byte_2515(0x2c); //CANINTF¡ª¡ªÖĞ¶Ï±êÖ¾¼Ä´æÆ÷
+    flag = read_byte_2515(0x2c); //CANINTFâ€”â€”ä¸­æ–­æ ‡å¿—å¯„å­˜å™¨
     printf("flag=%x\n",flag);
   //  printf(" SPI2.SPI_STATUS =%x\n", SPI2.SPI_STATUS );
  //   soft_reset();
-    if (flag&0x1)                //½ÓÊÕ»º³åÆ÷0ÂúÖĞ¶Ï±êÖ¾Î»
+    if (flag&0x1)                //æ¥æ”¶ç¼“å†²å™¨0æ»¡ä¸­æ–­æ ‡å¿—ä½
     {
     	for(i = 0; i < 16; i++)
 		{
@@ -182,7 +182,7 @@ unsigned char Can_receive(unsigned char *rx_buff)
 		}
     	bit_modify_2515(0x2c,0x01,0x00);
     	write_byte_2515(0x2c, 0x00);
-		if (!(rx_buff[1]&0x08)) return(1);	  //½ÓÊÕ±ê×¼Êı¾İÖ¡
+		if (!(rx_buff[1]&0x08)) return(1);	  //æ¥æ”¶æ ‡å‡†æ•°æ®å¸§
     }
     return(0);
 }
