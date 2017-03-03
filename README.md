@@ -5,11 +5,11 @@
 ## 目录说明
 
 1. 计算机语言
-	* C语言
+	* [C语言](1.语言/C/Index.md)
 		* C语言基础课程(补习课程，不是正课)
 		* C语言高级课程("Linux基础"放在这儿一起讲)
 		* C语言的数据结构
-	* C++语言
+	* [C++语言](1.语言/C++/Index.md)
 		* C++语言
 2. Linux基础
 3. Linux应用程序开发
@@ -57,3 +57,31 @@
 |驱动开发|王庆法|
 |安卓底层|李端君|
 |项目实战|姚凯元，夏万秋，李端君|
+
+## 注意事项
+
+* 不要把课件放到笔记里
+
+## 命名规范
+
+有三种命名方式
+
+1. ProcessTest
+2. process-test
+3. process_test
+
+在.c文件里
+
+* 命名一个函数 : ProcessTest
+* 命名一个变量 : process_test
+
+在 文件取名，使用
+* ProcessTest
+* process-test
+
+## 文件夹结构
+
+* README.md 是特殊的 Index.md 是每个git项目都有的
+* .md 文件的命名方式 : 驼峰法 “ProcessTest”
+* 每个课程文件夹里都有一个 Index.md 来介绍当前目录及子目录中的内容
+* 每个课程文件夹里都有一个 resource 文件夹 来存放资源文件，比如图片和pdf
