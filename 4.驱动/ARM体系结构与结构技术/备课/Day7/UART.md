@@ -18,6 +18,7 @@
 UMCONn[0] to "1" (activate nRTS). However, when the value equal to or larger than 16, set the value to "0"
 (inactivate nRTS).
 3. Repeat the Step 2 to receive next data.
+
 ## Tx Operation with FIFO
 1. Select the transmit mode (either interrupt or DMA mode).
 2. Verify the value of UMSTATn[0]. When the value is "1" (activate nCTS), Write data to Tx FIFO register.
