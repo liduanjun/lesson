@@ -16,4 +16,18 @@
 
 ## 教学内容
 
+* [数字电子的历史](DigitalElectronicHistory.md)
+* [数字电子的概念](DigitalElectronicConcept.md)
+* [数字集成电路](IntegratedCircuit.md)
+* [计算机组成](ComputerArchitecture.md)
+* [硬件开发工具](Tool.md)
+* [FS4412 开发板介绍](FS4412.md)
+* [元器件](Components.md)
+* [封装](Packgae.md)
+* [EDA](EDA.md)
+* [Altium Designer](AltiumDesigner.md)
+* [常见开发板](Note.md)
+
 ## 作业安排
+
+无
