@@ -1,5 +1,7 @@
 # Index - 索引目录 -> ARM 体系结构与接口技术
 
+## 按知识点分类列出目录
+
 1. Electronic - [电子学理论知识](Electronics/Index.md)
 * Digital Electronic History - 数字电子的历史：从模拟电子到数字电子
 * Digital Electronic Concept - 数字电子的概念：从晶体管到分立元器件
@@ -20,3 +22,7 @@
 * ARMDevelopment - ARM开发模型
 * Cotex-A9 - ARM体系结构
 * FS4412 - ARM接口技术
+
+## 课程安排
+
+[课程安排](课程安排/Index.md)
