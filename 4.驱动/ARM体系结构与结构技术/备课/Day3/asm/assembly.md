@@ -437,6 +437,11 @@ STR{条件}    Rd, <地址>
 LDR{条件}B   Rd, <地址>
 STR{条件}B   Rd, <地址>
 
+```
+mov r9,#0x11400020
+ldr r0,[r9]
+```
+
 ### LDM : 从内存加载多个数据到寄存器(Load Muti-data to Register)
 ### STM : 从寄存器存储多个数据到内存(Storage Muti-data from Register)
 
