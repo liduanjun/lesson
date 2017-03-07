@@ -10,6 +10,8 @@
 
 ## C语言内嵌汇编
 
+[课外资料](http://www.ethernut.de/en/documents/arm-inline-asm.html)
+
 .c 文件里这么写汇编
 
 ```
