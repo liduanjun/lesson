@@ -1,13 +1,12 @@
 # I2C - Inter－Integrated Circuit
 
-## 支持 I2C 总线的传感器之一 : 三轴加速度传感器
+## 原理图
+
+支持 I2C 总线的传感器之一 : 三轴加速度传感器
 
 ![schematic-i2c](resource/images/schematic-i2c.png)
+
 [三轴传感器MPU6050芯片手册](resource/MPU6050.pdf)
-
-## I2C Block
-
-![I2CBlock](resource/images/I2CBlock.png)
 
 ## I2C 协议
 
@@ -26,15 +25,19 @@ I2C 协议参考资料 :
 
 ![I2CDataOnI2CBus](resource/images/I2CDataOnI2CBus.png)
 
-## I2C Master Transmitter Mode Flow Chart
+## Exynos 4412 中的 I2C 控制器
+
+![I2CBlock](resource/images/I2CBlock.png)
+
+### I2C Master Transmitter Mode Flow Chart
 
 ![I2CMasterTransmitter](resource/images/I2CMasterTransmitter.png)
 
-## I2C Master Receiver Mode Flow Chart
+### I2C Master Receiver Mode Flow Chart
 
 ![I2CMasterReceiver](resource/images/I2CMasterReceiver.png)
 
-## I2C 寄存器
+### I2C 寄存器
 
 ```
 /*
@@ -71,7 +74,7 @@ typedef struct {
 	* Address = Base Address + 0x0010, Reset Value = 0x0000_0000
 	* ![I2CLC](resource/images/I2CLC.png)
 
-## I2C 代码
+## I2C 示例代码
 
 ```
 //****************************************
