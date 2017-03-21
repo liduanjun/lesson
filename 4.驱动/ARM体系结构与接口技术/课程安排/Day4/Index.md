@@ -18,9 +18,9 @@
 
 ## 教学内容
 
-* ![异常的概念](Expection.md)
-* ![中断的概念](Interrupt.md)
-* ![软中断](SWI.md)
+* [异常的概念](Expection.md)
+* [中断的概念](Interrupt.md)
+* [软中断](SWI.md)
 
 ## 作业安排
 

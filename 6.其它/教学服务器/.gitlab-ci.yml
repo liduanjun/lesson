@@ -1,0 +1,21 @@
+stages:
+  - build
+  - test
+  - deploy
+
+job1:
+  stage: build
+  script:
+    - gcc hello.c -o /binaries/hello.bin
+
+job2:
+  stage: test
+  script:
+    - /binaries/hello.bin
+
+job3:
+  stage: deploy
+  script:
+    - mv /binaries/hello.bin /home/t/share/
+    
+

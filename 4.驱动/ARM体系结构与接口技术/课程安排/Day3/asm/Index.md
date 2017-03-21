@@ -1,6 +1,6 @@
 # Index - 索引目录 -> ARM 汇编程序开发
 
-## 目录接口
+## 目录结构
 
 * [ARM指令](assembly.md)
 * [ARM 伪指令](ARMPseudoCode.md)
